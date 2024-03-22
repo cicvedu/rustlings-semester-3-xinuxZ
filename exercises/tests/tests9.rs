@@ -36,9 +36,12 @@ extern "Rust" {
 
 mod Foo {
     // No `extern` equals `extern "Rust"`.
-    fn my_demo_function(a: u32) -> u32 {
+    pub fn my_demo_function(a: u32) -> u32 {
         a
     }
+
+    #[allow(non_upper_case_globals)]
+    pub const my_demo_function_alias: unsafe fn(u32) -> u32 = my_demo_function;
 }
 
 #[cfg(test)]
